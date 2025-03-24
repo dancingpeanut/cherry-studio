@@ -14,7 +14,7 @@ import AddProviderPopup from './AddProviderPopup'
 import ProviderSetting from './ProviderSetting'
 
 const ProvidersList: FC = () => {
-  const providers = useAllProviders()
+  const providers = useAllProviders().filter((provider) => provider.name === 'OpenAI')
   const { updateProviders, addProvider, removeProvider, updateProvider } = useProviders()
   const [selectedProvider, setSelectedProvider] = useState<Provider>(providers[0])
   const { t } = useTranslation()
@@ -193,13 +193,13 @@ const ProvidersList: FC = () => {
           </ProviderList>
         </Scrollbar>
         <AddButtonWrapper>
-          <Button
+          {/* <Button
             style={{ width: '100%', borderRadius: 'var(--list-item-border-radius)' }}
             icon={<PlusOutlined />}
             onClick={onAddProvider}
             disabled={dragging}>
             {t('button.add')}
-          </Button>
+          </Button> */}
         </AddButtonWrapper>
       </ProviderListContainer>
       <ProviderSetting provider={selectedProvider} key={JSON.stringify(selectedProvider)} />

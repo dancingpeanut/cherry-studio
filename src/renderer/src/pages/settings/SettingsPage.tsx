@@ -56,12 +56,12 @@ const SettingsPage: FC = () => {
               </MenuItemLink>
             </>
           )}
-          <MenuItemLink to="/settings/web-search">
+          {/* <MenuItemLink to="/settings/web-search">
             <MenuItem className={isRoute('/settings/web-search')}>
               <GlobalOutlined />
               {t('settings.websearch.title')}
             </MenuItem>
-          </MenuItemLink>
+          </MenuItemLink> */}
           <MenuItemLink to="/settings/mcp">
             <MenuItem className={isRoute('/settings/mcp')}>
               <CodeOutlined />
@@ -74,7 +74,7 @@ const SettingsPage: FC = () => {
               {t('settings.general')}
             </MenuItem>
           </MenuItemLink>
-          <MenuItemLink to="/settings/display">
+          {/* <MenuItemLink to="/settings/display">
             <MenuItem className={isRoute('/settings/display')}>
               <LayoutOutlined />
               {t('settings.display.title')}
@@ -97,13 +97,13 @@ const SettingsPage: FC = () => {
               <SaveOutlined />
               {t('settings.data.title')}
             </MenuItem>
-          </MenuItemLink>
-          <MenuItemLink to="/settings/about">
+          </MenuItemLink> */}
+          {/* <MenuItemLink to="/settings/about">
             <MenuItem className={isRoute('/settings/about')}>
               <InfoCircleOutlined />
               {t('settings.about')}
             </MenuItem>
-          </MenuItemLink>
+          </MenuItemLink> */}
         </SettingMenus>
         <SettingContent>
           <Routes>

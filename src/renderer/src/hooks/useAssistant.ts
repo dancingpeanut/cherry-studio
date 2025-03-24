@@ -19,6 +19,7 @@ import { setDefaultModel, setTopicNamingModel, setTranslateModel } from '@render
 import { Assistant, AssistantSettings, Model, Topic } from '@renderer/types'
 
 import { TopicManager } from './useTopic'
+import { SYSTEM_MODELS } from '@renderer/config/models'
 
 export function useAssistants() {
   const { assistants } = useAppSelector((state) => state.assistants)
@@ -40,11 +41,11 @@ export function useAssistants() {
 export function useAssistant(id: string) {
   const assistant = useAppSelector((state) => state.assistants.assistants.find((a) => a.id === id) as Assistant)
   const dispatch = useAppDispatch()
-  const { defaultModel } = useDefaultModel()
+  // const { defaultModel } = useDefaultModel()
 
   return {
     assistant,
-    model: assistant?.model ?? assistant?.defaultModel ?? defaultModel,
+    model: assistant?.model ?? assistant?.defaultModel ?? SYSTEM_MODELS.openai,
     addTopic: (topic: Topic) => dispatch(addTopic({ assistantId: assistant.id, topic })),
     removeTopic: (topic: Topic) => {
       TopicManager.removeTopic(topic.id)
