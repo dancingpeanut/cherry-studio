@@ -452,7 +452,7 @@ export default class OpenAIProvider extends BaseProvider {
           break
         }
 
-        const delta = chunk.choices[0]?.delta
+        var delta = chunk.choices[0]?.delta
 
         if (delta?.reasoning_content || delta?.reasoning) {
           hasReasoningContent = true
@@ -473,6 +473,15 @@ export default class OpenAIProvider extends BaseProvider {
         const citations = (chunk as OpenAI.Chat.Completions.ChatCompletionChunk & { citations?: string[] })?.citations
 
         const finishReason = chunk.choices[0]?.finish_reason
+
+        console.log('delta', delta, delta?.tool_calls)
+        if (
+          (delta?.tool_calls === null || delta?.tool_calls === undefined) &&
+          delta?.content?.indexOf('"tool_calls"') > -1
+        ) {
+          delta = JSON.parse(delta.content)
+          console.log('real_data', delta)
+        }
 
         if (delta?.tool_calls?.length) {
           const chunkToolCalls = delta.tool_calls
